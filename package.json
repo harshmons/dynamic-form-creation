@@ -1,0 +1,26 @@
+{
+  "name": "dynamic-form-creation",
+  "version": "1.0.0",
+  "description": "Dynamic form creation from an xml file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harshmons/dynamic-form-creation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harshmons/dynamic-form-creation/issues"
+  },
+  "homepage": "https://github.com/harshmons/dynamic-form-creation#readme",
+  "dependencies": {
+    "angular": "^1.5.11",
+    "bootstrap": "^3.3.7",
+    "x2js": "^3.1.1"
+  }
+}

@@ -1,0 +1,66 @@
+<SffLocalConfig>
+    <Deploy.Location/>
+    <Project.Repository.Location>[:Deploy.Location:]src/</Project.Repository.Location>
+
+    <Include>[:Project.Repository.Location:]sff.cdp.config.xml</Include>
+    <mode>production</mode>
+    <developer>[:Project.Repository.Location:]deploy/DeviceEngine-Deploy/GenericTQLInterface.mqp.xml;[:Project.Repository.Location:]deploy/DeviceEngine-Deploy/CIMUserInterface.mqp.xml;[:Project.Repository.Location:]deploy/DeviceEngine-Deploy/CDPAdminInterface.xml;[:Project.Repository.Location:]deploy/DeviceEngine-Deploy/CIMCache.xml;[:Project.Repository.Location:]deploy/DeviceEngine-Initialize/;[:Project.Repository.Location:]deploy/DeviceEngine-Enable/</developer>
+    <extensionDeveloper>[:developer:][:Project.Repository.Location:]deploy/DeviceEngine-Deploy/CIMCache.xml;[:Project.Repository.Location:]deploy/Extension-Deploy/</extensionDeveloper>
+    <policyDeveloper>[:Project.Repository.Location:]deploy/DeviceEngine-Deploy/GenericTQLInterface.mqp.xml;[:Project.Repository.Location:]deploy/DeviceEngine-Deploy/CIMPolicyInterface.xml;[:Project.Repository.Location:]deploy/DeviceEngine-Deploy/CDPAdminInterface.xml;[:Project.Repository.Location:]deploy/DeviceEngine-Initialize/;[:Project.Repository.Location:]deploy/DeviceEngine-Enable/</policyDeveloper>
+    <production>[:Project.Repository.Location:]deploy/DeviceEngine-Deploy/;[:Project.Repository.Location:]deploy/Cluster-Deploy/;[:Project.Repository.Location:]deploy/Federation-Deploy/;[:Project.Repository.Location:]deploy/DeviceEngine-Initialize/;[:Project.Repository.Location:]deploy/Federation-Initialize/;[:Project.Repository.Location:]deploy/Extension-Deploy/</production>
+    <tqlEngine>[:Project.Repository.Location:]deploy/DeviceEngine-Deploy/GenericTQLInterface.mqp.xml</tqlEngine>
+    <developerAutoDeploy/>
+    <extensionDeveloperAutoDeploy/>
+    <tqlEngineAutoDeploy/>
+    <productionAutoDeploy>[:Project.Repository.Location:]deploy/DeviceEngine-Deploy/</productionAutoDeploy>
+    <!-- <sff.auto.deploy>[:Project.Repository.Location:]deploy/DeviceEngine-Deploy/</sff.auto.deploy> -->
+    <sff.auto.deploy>[:[:mode:]AutoDeploy:]</sff.auto.deploy>
+
+    <sff.local.deploy>[:[:mode:]:]</sff.local.deploy>
+    <!-- <sff.local.deploy>[:Project.Repository.Location:]deploy/DeviceEngine-Deploy/;[:Project.Repository.Location:]deploy/DeviceEngine-Initialize/;[:Project.Repository.Location:]deploy/DeviceEngine-Enable/</sff.local.deploy> -->
+    <sff.server.port>[:Config.DeployedPort:]</sff.server.port>
+    <!-- <sff.server.port>none</sff.server.port> -->
+    <sff.auto.convert>false</sff.auto.convert>
+    <sff.pipeline.executor.type>fair</sff.pipeline.executor.type>
+    <sff.max.queue.size>1000</sff.max.queue.size>
+    <sff.max.queue.check>error</sff.max.queue.check>
+
+    <sff.keystore.type>JKS</sff.keystore.type>
+    <sff.keystore.file>./sslcertificates/server.jks</sff.keystore.file>
+    <sff.keystore.pass>test1234</sff.keystore.pass>
+    <sff.cert.pass>test1234</sff.cert.pass>
+
+    <!-- Reporting Configuration -->
+    <sff.report.WallTime>1</sff.report.WallTime>
+    <sff.report.Prefix>""</sff.report.Prefix>
+    <sff.report.Suffix>,</sff.report.Suffix>
+    <sff.report.Prolog>{</sff.report.Prolog>
+    <sff.report.Epilog>}</sff.report.Epilog>
+    <sff.report.Format>%d</sff.report.Format>
+    <org.postgresql.Driver>
+        <SqlSff>
+            <Initialize>DROP TABLE IF EXISTS tR</Initialize>
+            <Initialize> CREATE TABLE tR ( rC SMALLINT NOT NULL, rS SMALLINT NOT NULL, rU INTEGER
+                NOT NULL, rT BIGINT NOT NULL, xI VARCHAR(127) NOT NULL, xA VARCHAR(127) NOT NULL, xR
+                BYTEA NOT NULL, xU VARCHAR(127) NULL, vS TEXT NULL, vL BIGINT NULL, vD DOUBLE
+                PRECISION NULL, vN NUMERIC(65,10) NULL, vB BYTEA NULL, vO BYTEA, kS TEXT NULL, kL
+                BIGINT NULL, kD DOUBLE PRECISION NULL, kN NUMERIC(65,10) NULL, kB BYTEA NULL, kO
+                BYTEA, PRIMARY KEY(xI,xA,xR) )</Initialize>
+            <Initialize>CREATE UNIQUE INDEX ix01_tRxU ON tR(xU)</Initialize>
+            <Initialize>CREATE INDEX ix02_tRxA ON tR(xA,xI)</Initialize>
+            <Initialize>CREATE INDEX ix03_tRvS ON tR(md5(vS),xI)</Initialize>
+            <Initialize>CREATE INDEX ix04_tRvL ON tR(vL,xI)</Initialize>
+            <Initialize>CREATE INDEX ix05_tRvD ON tR(vD,xI)</Initialize>
+            <Initialize>CREATE INDEX ix06_tRvN ON tR(vN,xI)</Initialize>
+            <Initialize>CREATE INDEX ix07_tRvB ON tR(vB,xI)</Initialize>
+            <Initialize>GRANT ALL ON tR TO PUBLIC</Initialize>
+            <Initialize>INSERT INTO tR VALUES(0,0,0,0,'TEST','TEST1','TEST',NULL,
+                NULL,NULL,NULL,NULL,NULL,NULL, NULL,NULL,NULL,NULL,NULL,NULL)</Initialize>
+            <Initialize>DELETE FROM tR WHERE xI='TEST'</Initialize>
+            <StartTransaction>begin transaction</StartTransaction>
+            <Checkpoint></Checkpoint>
+            <Shutdown>VACUUM ANALYZE</Shutdown>
+        </SqlSff>
+    </org.postgresql.Driver>
+
+</SffLocalConfig>
